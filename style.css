@@ -1,0 +1,137 @@
+:root {
+  /* Colors from https://coolors.co */
+  /* Whites-to-blacks */
+  --magnolia: #ebf1ff;
+  --alabaster: #dce0d9;
+  --cultured: #eff1f3;
+  --light-gray: #dbd3d8;
+
+  /* Pinks */
+  --pale-pink: #f9dcdc;
+  
+  /* Reds */
+  --persian-plum: #6b0f1a;
+  --dark-byzantium: #503047;
+
+  /* Oranges */
+  --terra-cotta: #d77a61;
+  --cedar-chest: #c05746;
+  --safety-orange: #f26418;
+  --desert-sand: #d8b4a0;
+
+  /* Yellows */
+  --mustard: #ffd447;
+
+  /* Greens */
+  --pine-tree: #182518;
+
+  /* Blues */
+  --gunmetal: #223843;
+  --blue-crayola: #256eff;
+  --violet-blue-crayola: #6369d1;
+
+  /* Indigos */
+  --persian-indigo: #3a0f80;
+
+  /* Violets */
+  --dark-purple: #31081f;
+  --russian-violet: #3c1642;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-size: 100%;
+  height: 100%;
+}
+
+#default {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#default h1,
+#default .h1 {}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: var(--alabaster);
+}
+
+.area {
+  padding: 10px;
+}
+
+.area.badge {
+  grid-area: badge;
+}
+
+.area.footer.main {
+  grid-area: footer-main;
+}
+
+.area.footer.copyright {
+  grid-area: footer-copy;
+}
+
+.badge {
+  background-color: var(--blue-crayola);
+}
+
+.area.sidebar {
+  grid-area: sidebar;
+}
+
+.sidebar {
+  background-color: var(--russian-violet);
+}
+
+.area.heading {
+  grid-area: heading;
+}
+
+.heading {
+  background-color: var(--cedar-chest);
+}
+
+.area.main {
+  grid-area: main;
+}
+
+.main {
+  background-color: var(--pine-tree);
+}
+
+.badge,
+.sidebar,
+.heading,
+.main {
+  color: var(--magnolia);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: auto;
+  /* grid-auto-rows: auto; */
+  grid-template-areas:
+    "badge heading"
+    "sidebar main"
+    "footer-copy footer-main";
+  min-width: 25%;
+}
+
+.breadcrumbs::before {
+  content: "> ";
+}
