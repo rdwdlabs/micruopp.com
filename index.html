@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title></title>
@@ -11,37 +11,26 @@
 </head>
 <body id="default">
   <div class="container">
-    <div class="grid">
-      <div class="area badge">
-        <div class="logo">
-          <p>Mic <br>Ruopp</p>
-	</div>
+    <main class="main">
+      <div class="content">
+        <div id="message">
+          <p id="greeting">Hey! I'm</p>
+          <p id="name"><span id="first-name">Mic</span> <span id="last-name">Ruopp</span></p>
+        </div>
       </div>
-      <div class="area sidebar">
-        <nav>
-          <ul>
-            <li>Works</li>
-	    <li>Contact</li>
-	  </ul>
-	</nav>
+    </main>
+    <footer class="footer">
+      <div class="content">
+        <div class="divider"></div>
+        <ul id="contact-links">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">micruopp@gmail.com</a></li>
+        </ul>
+        <p id="legal">
+          &copy; 2022
+        </p>
       </div>
-      <div class="area footer copyright">
-        <p class="">(c) 2021. All rights reserved.</p>
-      </div>
-      <div class="area heading">
-        <div class="status"></div>
-	<div class="breadcrumbs">Home</div>
-	<div class="controls"><span id="idk-toggle">[?]</span> | <span id="theme-toggle">[*]</span> | <span id="menu-toggle">[=]</span></div>
-      </div>
-      <div class="area main">
-	<div class="content">
-	  <h1 class="">Hello, world!</h1>
-	  <h2 class="">A work in progress...</h2>
-	</div>
-      </div>
-      <footer class="area footer main">
-      </footer>
-    </div>
+    </footer>
   </div>
 </body>
 </html>
