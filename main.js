@@ -1,31 +1,42 @@
 (function() {
   window.onload = beforeLaunch;
-
   document.addEventListener('DOMContentLoaded', launchApp);
 
   function beforeLaunch() {
     console.log('window loaded.');
+    
+    // Default color scheme is dark, so check if the user prefers light.
+    // If so, switch to light scheme.
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.setAttribute('data-color-scheme', 'light');
+    }
   }
 
   function launchApp() {
-    randomizeGreeting();
+    // What's the best adjective for this? link, bind, create
+    bindEventListeners();
   }
 
-  function randomizeGreeting() {
-    const greetings = [
-      "Hey!",
-      "Hi!",
-      "Hello there.",
-      "Yo.",
-      "&#x1F44B",
-    ];
-
-    const greetingEl = document.getElementById('greeting');
-
-    let randomIndex = Math.floor(Math.random() * greetings.length);
-    let newGreeting = `${greetings[randomIndex]} I'm`;
-    //let newGreeting = `${greetings[4]} <p>&#x1F354</p> I'm`;
-
-    greetingEl.innerHTML = newGreeting; 
+  function toggleDarkMode() {
+    const SCHEME = 'data-color-scheme';
+    let colorScheme = document.body.getAttribute(SCHEME);
+    let newScheme = (colorScheme === "dark") ? "light" : "dark";
+    document.body.setAttribute(SCHEME, newScheme);
+  }
+  
+  function handleKeyDown(e) {
+      switch (e.key) {
+      case 'd':
+        toggleDarkMode();
+        break;
+      default:
+      }
+  }
+  
+  function bindEventListeners() {
+    window.addEventListener('keydown', handleKeyDown);
+    
+    let schemeToggleButton = document.querySelector('.cst-button');
+    schemeToggleButton.addEventListener('click', toggleDarkMode);
   }
 })();

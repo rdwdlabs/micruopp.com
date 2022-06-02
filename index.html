@@ -3,31 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title></title>
-
   <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
 </head>
-<body id="default">
+<body id="default" data-color-scheme="dark">
   <div class="container">
-    <main class="main">
+    <header class="header">
       <div class="content">
-        <div id="message">
-          <p id="greeting">Hey! I'm</p>
-          <p id="name"><span id="first-name">Mic</span> <span id="last-name">Ruopp</span></p>
+      <button class="cst-button">
+        <span class="cst-text" data-toggle="lt">lt</span>/<span class="cst-text" data-toggle="dk">dk</span>
+      </button>
+      </div>
+    </header>
+    <main class="main">
+      <div class="bg">
+        <span id="bg-main-text">Mic<br/>Ruopp</span>
+      </div>
+      <div class="content">
+        <div id="greeting">
+          <p id="first-name">Mic</p>
+          <p id="last-name">Ruopp</p>
         </div>
       </div>
     </main>
     <footer class="footer">
       <div class="content">
-        <div class="divider"></div>
-        <ul id="contact-links">
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">micruopp@gmail.com</a></li>
-        </ul>
         <div id="legal">
           <p>Copyright &copy; 2022. All rights reserved.</p>
+        </div>
+        <div class="contact">
+          <a href="#">GitHub</a>
+          <a href="#">EMail</a>
         </div>
       </div>
     </footer>
