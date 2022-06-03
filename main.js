@@ -38,5 +38,6 @@
     
     let schemeToggleButton = document.querySelector('.cst-button');
     schemeToggleButton.addEventListener('click', toggleDarkMode);
+    // TODO: on window focus, CHECK dark mode and toggle if necessary.
   }
 })();
