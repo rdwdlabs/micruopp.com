@@ -13,16 +13,19 @@
   --system: var(--system-sans);
   
   /* Themes */
-  --dk-bg: var(--black);
-  --dk-fg: var(--white);
+  --dk-bg-p: var(--black);
+  --dk-fg-p: var(--white);
+  --dk-fg-s: var(--dk-grey);
   
-  --lt-bg: var(--white);
-  --lt-fg: var(--black);
+  --lt-bg-p: var(--white);
+  --lt-fg-p: var(--black);
+  --lt-fg-s: var(--lt-grey);
 
   /* Defaults */
-  --bg: var(--dk-bg);
-  --fg: var(--dk-fg);
-  
+  --bg-p: var(--dk-bg-p);
+  --fg-p: var(--dk-fg-p);
+  --fg-s: var(--dk-fg-s);
+    
   --font: var(--system);
 }
 
@@ -38,20 +41,15 @@ body {
   height: 100%;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
 }
 
-[data-color-scheme="dark"] {
-  --bg: var(--dk-bg);
-  --fg: var(--dk-fg);  
-}
-
-[data-color-scheme="light"] {
-  --bg: var(--lt-bg);
-  --fg: var(--lt-fg);
-}
-   
 .container {
   display: flex;
   flex-direction: column;
@@ -102,7 +100,7 @@ ul {
 
 .cst-button {
   all: unset;
-  border: 2px solid var(--fg);
+  border: 2px solid var(--fg-p);
   border-radius: 7px;
   opacity: 0.5;
   padding: 7px;
@@ -112,27 +110,18 @@ ul {
   cursor: pointer;
 }
 
-[data-color-scheme="dark"] .cst-text[data-toggle="dk"],
-[data-color-scheme="light"] .cst-text[data-toggle="lt"] {
-  text-decoration: underline;
+.cst-text{
+   text-decoration: underline;
 }
 
 #default {
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: var(--bg-p);
+  color: var(--fg-p);
   font-family: var(--font); 
 }
 
-[data-color-scheme="dark"] #bg-main-text {
-  color: var(--dk-grey);
-}
-
-[data-color-scheme="light"] #bg-main-text {
-  color: var(--lt-grey);
-}
-
 #bg-main-text {
-  color: var(--lt-grey);
+  color: var(--fg-s);
   font-size: 27vw;
   font-weight: 600;
   /*letter-spacing: .35rem;*/
@@ -156,17 +145,35 @@ ul {
 }
 
 #legal {
+  /*font-size: .75rem;*/
+}
+
+.footer {
   font-size: .75rem;
 }
 
 .footer .contact {
-  display: none;
+  /*display: none;*/
+  margin-bottom: 10px;
+}
+
+.footer .contact a:hover {
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: var(--lt-bg);
-    --fg: var(--lt-fg);
+    --bg-p: var(--lt-bg-p);
+    --fg-p: var(--lt-fg-p);
+    --fg-s: var(--lt-fg-s);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-p: var(--dk-bg-p);
+    --fg-p: var(--dk-fg-p);
+    --fg-s: var(--dk-fg-s);
   }
 }
 
@@ -180,5 +187,9 @@ ul {
 @media screen and (orientation: portrait) and (max-width: 480px) {
   #bg-main-text {
     font-size: 24vh;
+  }
+  
+  .footer {
+    text-align: center;
   }
 }
