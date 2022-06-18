@@ -5,10 +5,11 @@
   function beforeLaunch() {
     console.log('window loaded.');
     
-    // Default color scheme is dark, so check if the user prefers light.
-    // If so, switch to light scheme.
+    // Set color scheme attributei
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      document.body.setAttribute('data-color-scheme', 'light');
+      document.documentElement.setAttribute('data-color-scheme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-color-scheme', 'dark');
     }
   }
 
@@ -17,11 +18,22 @@
     bindEventListeners();
   }
 
+
   function toggleDarkMode() {
-    const SCHEME = 'data-color-scheme';
-    let colorScheme = document.body.getAttribute(SCHEME);
-    let newScheme = (colorScheme === "dark") ? "light" : "dark";
-    document.body.setAttribute(SCHEME, newScheme);
+     setColorScheme(); 
+  }
+  
+  const SCHEME = 'data-color-scheme';
+  function __setColorScheme(el, scheme) {
+    let newScheme = (scheme === "dark") ? "light" : "dark";
+    el.setAttribute(SCHEME, newScheme);
+  }
+  
+  function setColorScheme() {
+    const el = document.documentElement;
+    let colorScheme = el.getAttribute(SCHEME);
+  
+    __setColorScheme(el, colorScheme);
   }
   
   function handleKeyDown(e) {
