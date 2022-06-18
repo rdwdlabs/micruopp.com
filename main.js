@@ -1,3 +1,7 @@
+// micruopp.com
+// @author Mic Ruopp dev@micruopp.com
+// Copyright 2022. All rights reserved.
+
 (function() {
   window.onload = beforeLaunch;
   document.addEventListener('DOMContentLoaded', launchApp);
