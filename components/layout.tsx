@@ -8,6 +8,8 @@ import utilStyles from '../styles/utils.module.css';
 const name = 'Mic Ruopp';
 export const siteTitle = 'Mic Ruopp';
 
+const buildNumber = '0';
+
 export default function Layout({ children, home }: { children: React.ReactNode, home?: boolean }) {
   return (
     <div className={styles.container}>
@@ -54,6 +56,11 @@ export default function Layout({ children, home }: { children: React.ReactNode, 
           </div>
         )}
       </main>
+      <footer>
+        <p>TODO: Contact links here</p>
+        <p>Copyright &#169; Mic Ruopp</p>
+        <p>Build {buildNumber}</p>
+      </footer>
     </div>
   );
 }
