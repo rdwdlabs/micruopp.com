@@ -21,12 +21,6 @@ export default function Home({ allPostsData }: { allPostsData: { date: string, t
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Lorem ipsum...</p>
-        <p>
-          (Some other sample paragraph. You can build this site too!)
-        </p>
-      </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
