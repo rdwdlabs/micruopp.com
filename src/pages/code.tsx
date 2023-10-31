@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Code({ repos }: { repos: { name: String }[] }) {
+export default function Code({ repos }: { repos: { name: string, desc: string, url: string }[] }) {
   return (
     <Layout home>
       <Head>

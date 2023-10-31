@@ -34,6 +34,7 @@ export default function Photo({ photoData }: { photoData: { filename: string }})
         <div>
           <Image 
             src={imageUrl}
+            alt=""
             width={250}
             height={500}
           />

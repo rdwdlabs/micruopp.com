@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 }
 
-export default function Photos({ allPhotosData }: { allPhotosData: { filename: string }[]}) {
+export default function Photos({ allPhotosData }: { allPhotosData: { id: string }[]}) {
   return (
     <Layout home>
       <Head>
@@ -28,6 +28,7 @@ export default function Photos({ allPhotosData }: { allPhotosData: { filename: s
               <Link href={`/photos/${id}`}>
                 <Image
                   src={`/images/photos/${id}.png`}
+                  alt=""
                   width={250}
                   height={250}
                 />

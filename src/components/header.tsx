@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function Header({ className }: { className: string }) {
   let [isNavHidden, setIsNavHidden]: [boolean, any] = React.useState(true);
 
-  function toggleNav(e) {
+  function toggleNav(e: any) {
     e.preventDefault();
     setIsNavHidden(!isNavHidden);
   }

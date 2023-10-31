@@ -24,7 +24,7 @@ function toggleColorScheme() {
   root.dataset.colorScheme = current === 'dark' ? 'light' : 'dark';
 }
 
-function handleKeypress(e) {
+function handleKeypress(e: any) {
   switch (e.key) {
     case 'd':
     case 't':
