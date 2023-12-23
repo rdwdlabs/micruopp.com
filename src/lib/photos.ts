@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-const photosDirectory = path.join(process.cwd(), 'src/photos');
+const photosDirectory = path.join(process.cwd(), 'src/data/photos');
 
 export function getSortedPhotosData() {
   const fileNames = fs.readdirSync(photosDirectory);
@@ -18,7 +18,7 @@ export function getSortedPhotosData() {
   
     return {
       id,
-      //...(matterResult.data as { date: string, title: string }),
+      ...matterResult.data
     };
   });
 
@@ -43,14 +43,14 @@ export async function getPhotoData(id: string) {
   
   const matterResult = matter(fileContents);
   
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const content = processedContent.toString();
+  // const processedContent = await remark()
+  //   .use(html)
+  //   .process(matterResult.content);
+  // const content = processedContent.toString();
   
   return {
     id,
-    content,
-    ...matterResult.data,
+    // content,
+    ...matterResult.data
   };
 }

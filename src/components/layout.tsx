@@ -7,64 +7,71 @@ import Nav from './nav';
 import Header from './header';
 import Footer from './footer';
 import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
+
+import { setupKeyboardDelegate, removeKeyboardDelegate, registerKey } from 'lib/keyboard.ts';
+// I want:
+// import Keyboard from 'lib/keyboard.ts';
+import { toggleColorScheme } from 'lib/colorscheme.ts';
 
 const name = 'Mic Ruopp';
 export const siteTitle = 'Mic Ruopp';
 
-const buildNumber = '0';
-
-function toggleColorScheme() {
-  const root = document.documentElement;
-  
-  const setScheme = root.dataset.colorScheme || null;
-  const sysScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  const current = setScheme || sysScheme;
-
-  root.dataset.colorScheme = current === 'dark' ? 'light' : 'dark';
-}
-
+/*
 function handleKeypress(e: any) {
   switch (e.key) {
     case 'd':
-    case 't':
-      e.preventDefault();
+    case 't': e.preventDefault();
       toggleColorScheme();
       e.stopPropagation();
       break;
     default:
   }
 }
+*/
 
-export default function Layout({ children, home }: { children: React.ReactNode, home?: boolean }) {
+export default function Layout({ children, pageName }: { children: React.ReactNode, pageName?: string }) {
   useEffect(() => {
+    /*
     // const systemScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light');
     window.addEventListener('keyup', handleKeypress);
     return () => {
       window.removeEventListener('keyup', handleKeypress);
     }
+    */
+    setupKeyboardDelegate() 
+    registerKey('d', toggleColorScheme);
+    registerKey('t', toggleColorScheme);
+    // iwant:
+    // Keybord.init() // if I can't do this some automatic way
+    // Keybord.register('d', toggleColorScheme);
+    // Keybord.register('t', toggleColorScheme);
+
+    return () => {
+      removeKeyboardDelegate();
+      // iwant:
+      // Keybord.cleanup() // or .teardown() maybe?
+    };
   });
 
+  let siteName = "micruopp.com";
+  let metaTitle = `${pageName} | ${siteName}`;
+  let metaDesc = `a meaningful, search-engine optimized description describing how incredible of a person I am.`;
+
   return (
-    <div className={styles.container} onKeyUp={handleKeypress}>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Thoughts from the mountain top" />
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDesc} />
       </Head>
-      <Header className={styles.header}></Header>
+      <Header/>
       <main>
-        {children}
-        {/*
-        // Rework this to be a 'previous' and 'next' post link and
-        // move it to posts/[id]
-        {!home && (
-          <div className={styles.backToHome}>
-            <Link href="/">← Back to Home</Link>
-          </div>
-        )}
-        */}
+        <div className="content">
+          <h1>{pageName}</h1>
+          {children}
+        </div>
       </main>
-      <Footer></Footer>
-    </div>
+      <Footer/>
+    </>
   );
 }

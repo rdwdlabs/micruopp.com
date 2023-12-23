@@ -2,75 +2,129 @@
   --black: #111;
   --white: #eee;
 
-  --aqua:       #0af0ae;
-  --electric:   #0c79f3;
-  --peach:      #f9c7a8;
+  --aqua:           #0af0ae;
+  --aqua-red-shift: #84e946;
+  --blue-violet:    #8952ff;
+  --blue-violet2:    #5614fc;
+  --electric:       #2ca9f5;
+  --electric2:       #0c79f3;
+  --gold:           #e59911;
+  --lime:           #a5f031;
+  --peach:          #f9c7a8;
+  --tangerine:      #ff9912;
 
   --dark-bg: var(--black);
   --dark-fg: var(--white);
-  --dark-accent: var(--aqua);
+  --dark-fg1: var(--electric);
+  --dark-fg2: var(--blue-violet);
+  --dark-fg3: var(--tangerine);
 
   --light-bg: var(--white);
   --light-fg: var(--black);
-  --light-accent: var(--electric);
+  --light-fg1: var(--electric);
+  --light-fg2: var(--blue-violet);
+  --light-fg3: var(--tangerine);
 
   /* default to dark theme */
   --bg: var(--dark-bg);
   --fg: var(--dark-fg);
-  --accent: var(--dark-accent);
+  --fg1: var(--dark-fg1);
+  --fg2: var(--dark-fg2);
+  --fg3: var(--dark-fg3);
 }
 
 :root[data-color-scheme="dark"] {
   --bg: var(--dark-bg);
   --fg: var(--dark-fg);
-  --accent: var(--dark-accent);
+  --fg1: var(--dark-fg1);
+  --fg2: var(--dark-fg2);
+  --fg3: var(--dark-fg3);
 }
 
 :root[data-color-scheme="light"] {
   --bg: var(--light-bg);
   --fg: var(--light-fg);
-  --accent: var(--light-accent);
+  --fg1: var(--light-fg1);
+  --fg2: var(--light-fg2);
+  --fg3: var(--light-fg3);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html,
+html {
+  display: flex;
+  background-color: var(--fg1);
+  height: 100%;
+}
+
 body {
   background-color: var(--bg);
+  /*min-height: 100%;*/
+  width: 100%;
+}
+
+html,
+body {
   color: var(--fg);
   font-size: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
 }
 
 #__next {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 
-a,
+#__next > main {
+  flex: 1 0 auto;
+}
+
+
+a {
+  /* TODO: do something for `:hover` anchors */
+  color: var(--fg1);
+}
+
 a:visited {
-  color: var(--accent);
+  color: var(--fg2);
+}
+
+a:active {
+  color: var(--fg3);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-color-scheme]) {
     --bg: var(--light-bg);
     --fg: var(--light-fg);
-    --accent: var(--light-accent);
+    --fg1: var(--light-fg1);
+    --fg2: var(--light-fg2);
+    --fg3: var(--light-fg3);
   }
 }
-/* edge case where the dark pref is needed? */
-/*
- * user os set to dark.
- * attribute is set to empty / invalid value
- * ...
- * not sure yet.
+/* is the dark pref needed? */
+/* if the default is light -- the media selector needs to 
+ * be the opposite of the default
  */
+  /*
+   * user os set to dark.
+   * attribute is set to empty / invalid value
+   * ...
+   * not sure yet.
+   */
 
-/* header stuff */
-.lastname {
-  font-weight: normal;
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80ch;
+}
+
+footer {
+  border-top: 1px solid #ddd;
 }

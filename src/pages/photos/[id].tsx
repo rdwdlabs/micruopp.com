@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Layout from '../../components/layout';
 import Date from '../../components/date';
 import Image from 'next/image';
+import Link from 'next/link';
 import { getAllPhotoIds, getPhotoData } from '../../lib/photos';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -22,23 +23,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 }
 
-export default function Photo({ photoData }: { photoData: { filename: string }}) {
-  const imageUrl = `/images/photos/${photoData.filename}`;
+export default function Photo({ photoData }: { photoData: { filename: string, description: string, height: number, width: number }}) {
+  const photo = {
+    url: `/images/${photoData.filename}`,
+    name: photoData.filename.split('.')[0],
+    desc: photoData.description,
+    width: photoData.width,
+    height: photoData.height
+  };
+  let pageName = photo.name;
+
   return (
-    <Layout>
-      <Head>
-        <title></title>
-      </Head>
+    <Layout pageName={pageName}>
       <article>
-        <h1>{photoData.filename}</h1>
         <div>
           <Image 
-            src={imageUrl}
-            alt=""
-            width={250}
-            height={500}
+            src={ photo.url }
+            alt={  photo.desc }
+            width={ photo.width }
+            height={ photo.height }
           />
         </div>
+        <p>{ photo.desc }</p>
       </article>
     </Layout>
   )

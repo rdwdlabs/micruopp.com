@@ -1,3 +1,0 @@
----
-filename: 'alcazar.png'
----

@@ -1,4 +1,3 @@
-
 export async function getPublicRepoData() {
   const root = "https://api.github.com/";
   const endpt = "users/micruopp/repos";

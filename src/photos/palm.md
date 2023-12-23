@@ -1,3 +1,0 @@
----
-filename: 'palm.png'
----

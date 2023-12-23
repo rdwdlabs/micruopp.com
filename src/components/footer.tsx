@@ -4,7 +4,7 @@ import MainMenu from './main-menu';
 export default function Footer() {
     return (
       <footer>
-        <div>
+        <div className="content">
           <div>
             <h3>pages</h3>
             <MainMenu></MainMenu>

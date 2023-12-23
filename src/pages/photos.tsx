@@ -1,9 +1,8 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
+import { getSortedPhotosData } from '../lib/photos';
+import Layout from '../components/layout';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout from '../components/layout';
-import { getSortedPhotosData } from '../lib/photos';
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPhotosData = getSortedPhotosData();
@@ -14,29 +13,33 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 }
 
-export default function Photos({ allPhotosData }: { allPhotosData: { id: string }[]}) {
+export default function Photos({ allPhotosData }: { allPhotosData: { id: string, filename: string, description: string, height: number, width: number }[]}) {
+  let pageName = "photos";
+  const thumbnails = [];
+  //const sizeToThumbnail = (v) => {
+  //  const thumbnail
+
   return (
-    <Layout home>
-      <Head>
-        <title>Photos</title>
-      </Head>
-      <h1>Photos</h1>
-      <section>
-        <ul>
-          {allPhotosData.map(({ id }) => (
-            <li key={id}>
-              <Link href={`/photos/${id}`}>
-                <Image
-                  src={`/images/photos/${id}.png`}
-                  alt=""
-                  width={250}
-                  height={250}
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+    <Layout pageName={pageName}>
+      <div>
+        <p>some photos I've taken</p>
+        <section>
+          <ul>
+            {allPhotosData.map(({ id, filename, desc, width, height }) => (
+              <li key={id}>
+                <Link href={`/photos/${id}`}>
+                  <Image
+                    src={ `/images/${filename}` }
+                    alt={ desc }
+                    width={ width }
+                    height={ height }
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </Layout>
   );
 }

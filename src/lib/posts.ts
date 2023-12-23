@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-const postsDirectory = path.join(process.cwd(), 'src/posts');
+const postsDirectory = path.join(process.cwd(), 'src/data/posts');
 
 export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
@@ -15,15 +15,25 @@ export function getSortedPostsData() {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
   
     const matterResult = matter(fileContents);
-  
-    return {
-      id,
-      ...(matterResult.data as { date: string, title: string }),
-    };
-  });
+    console.log(matterResult.data);
+    
+    let article = undefined;
+    const isPublished = matterResult.data["Published"];
+    if (isPublished) {
+      article = {
+        id,
+        ...matterResult.data,
+      };
+    }    
+
+    return article;
+  })
+  .filter(
+    (article => article !== undefined)
+  );
 
   return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
+    if (a.date > b.date) {
       return 1;
     } else {
       return -1;
