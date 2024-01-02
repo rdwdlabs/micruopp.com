@@ -18,10 +18,12 @@ export function getSortedPostsData() {
     console.log(matterResult.data);
     
     let article = undefined;
-    const isPublished = matterResult.data["Published"];
+    const isPublished = matterResult.data['Published'];
+    const date = matterResult.data['CreatedAt'];
     if (isPublished) {
       article = {
         id,
+        date,
         ...matterResult.data,
       };
     }    
@@ -33,7 +35,7 @@ export function getSortedPostsData() {
   );
 
   return allPostsData.sort((a, b) => {
-    if (a.date > b.date) {
+    if (a && b && a.date > b.date) {
       return 1;
     } else {
       return -1;

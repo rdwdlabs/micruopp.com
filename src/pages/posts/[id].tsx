@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 }
 
-export default function Post({ postData }) {
+export default function Post({ postData }: any) {
   const pageName = postData.Title;
   return (
     <Layout pageName={pageName}>

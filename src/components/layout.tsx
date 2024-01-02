@@ -8,10 +8,10 @@ import Header from './header';
 import Footer from './footer';
 import styles from './layout.module.css';
 
-import { setupKeyboardDelegate, removeKeyboardDelegate, registerKey } from 'lib/keyboard.ts';
+import { setupKeyboardDelegate, removeKeyboardDelegate, registerKey } from 'lib/keyboard';
 // I want:
-// import Keyboard from 'lib/keyboard.ts';
-import { toggleColorScheme } from 'lib/colorscheme.ts';
+// import Keyboard from 'lib/keyboard';
+import { toggleColorScheme } from 'lib/colorscheme';
 
 const name = 'Mic Ruopp';
 export const siteTitle = 'Mic Ruopp';
@@ -64,7 +64,7 @@ export default function Layout({ children, pageName }: { children: React.ReactNo
         <title>{metaTitle}</title>
         <meta name="description" content={metaDesc} />
       </Head>
-      <Header/>
+      <Header className="" />
       <main>
         <div className="content">
           <h1>{pageName}</h1>

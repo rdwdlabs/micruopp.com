@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 }
 
-export default function Posts({ allPostsData }) {
+export default function Posts({ allPostsData }: any) {
   let pageTitle = 'posts';
   let metaTitle = `${pageTitle} | ${siteTitle}`;
 
@@ -24,12 +24,12 @@ export default function Posts({ allPostsData }) {
         <title>{metaTitle}</title>
       </Head>
       <div className="breadcrumbs">
-        <p>index > <Link href="/posts">{pageTitle}</Link></p>
+        <p>index {'>'} <Link href="/posts">{pageTitle}</Link></p>
       </div>
       <h1>{pageTitle}</h1>
       <section>
         <ul>
-          {allPostsData.map(({ id, Title, CreatedAt }) => (
+          {allPostsData.map(({ id, Title, CreatedAt }: any) => (
             <li className="" key={id}>
               <Link href={`/posts/${id}`}>
                 {Title}

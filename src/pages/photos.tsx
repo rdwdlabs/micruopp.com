@@ -25,7 +25,7 @@ export default function Photos({ allPhotosData }: { allPhotosData: { id: string,
         <p>some photos I've taken</p>
         <section>
           <ul>
-            {allPhotosData.map(({ id, filename, desc, width, height }) => (
+            {allPhotosData.map(({ id, filename, desc, width, height }: any) => (
               <li key={id}>
                 <Link href={`/photos/${id}`}>
                   <Image

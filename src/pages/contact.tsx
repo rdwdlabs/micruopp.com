@@ -19,7 +19,7 @@ export default function Contact() {
           <label htmlFor="contact-subject">Subject</label>
           <input type="text" id="contact-subject" name="contact-subject" />
           <label htmlFor="contact-message">Message</label>
-          <textarea type="text" id="contact-message" name="contact-message" />
+          <textarea id="contact-message" name="contact-message" />
           <button type="submit" value='Submit'>Send</button>
         </form>
       </div>

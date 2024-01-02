@@ -12,3 +12,4 @@ export default function Article() {
       <p>Other posts...</p>
     </>
   );
+}

@@ -4,11 +4,11 @@ class KeyboardDelegate() {
 }
 */
 
-class Keyboard {
-
+interface KeyEvents {
+  [key: string]: () => void;
 }
 
-const keyFns = {};
+const keyFns: KeyEvents = {};
 
 function handleKeypress(e: any) {
   // if keyFns[e.key]

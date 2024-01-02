@@ -5,6 +5,10 @@ import Layout, { siteTitle } from '../components/layout';
 import Date from '../components/date';
 import { getSortedPostsData } from '../lib/posts';
 
+interface Post {
+
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
@@ -14,10 +18,10 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({allPostsData}: any) {
   console.log(allPostsData);
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -25,7 +29,7 @@ export default function Home({ allPostsData }) {
         <p>welcome to my website. I post random things here. enjoy</p>
         <h2 className="">Recent</h2>
         <ul className="">
-          {allPostsData.map(({ id, Title, CreatedAt }) => (
+          {allPostsData.map(({ id, Title, CreatedAt }: any) => (
             <li className="" key={id}>
               <Link href={`/posts/${id}`}>
                 {Title}
