@@ -9,8 +9,6 @@ Once upon a time, while lurking in the chat of [a mystical keyboard wrangler](ht
 
 > If something magical is done for you, it stays magical until you break it or remove it.
 
-You know, like when a kid takes apart a pen to see how it works. 
+Kind of like when a kid takes apart a pen to see how it works (or just to fling the spring). Or like when someone disassembles and reassembles a car engine. Or like when someone configures Vim from scratch.
 
-Or like when someone disassembles and reassembles a car engine.
-
-THIS DOESN'T QUITE FIT. Or like when someone writes [an operating system](https://en.wikipedia.org/wiki/TempleOS) from scratch.
+Magic is just an illusion. Learn magic, and you can learn _anything_.
