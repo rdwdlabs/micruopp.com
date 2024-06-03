@@ -1,7 +1,7 @@
 ---
 Title: 'something magical'
 CreatedAt: '2023-08-24'
-UpdatedAt: '2023-12-11'
+UpdatedAt: '2024-05-31'
 Published: true
 ---
 
