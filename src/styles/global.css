@@ -1,5 +1,7 @@
 :root {
   --black: #111;
+  --grey1: #222;
+  --grey2: #ddd;
   --white: #eee;
 
   --aqua:           #0af0ae;
@@ -13,40 +15,45 @@
   --peach:          #f9c7a8;
   --tangerine:      #ff9912;
 
+  --dark-ac: var(--electric);
+  --dark-ac2: var(--blue-violet);
+  --dark-ac3: var(--tangerine);
   --dark-bg: var(--black);
   --dark-fg: var(--white);
-  --dark-fg1: var(--electric);
-  --dark-fg2: var(--blue-violet);
-  --dark-fg3: var(--tangerine);
+  --dark-fg2: var(--grey1);
 
+  --light-ac: var(--electric);
+  --light-ac2: var(--blue-violet);
+  --light-ac3: var(--tangerine);
   --light-bg: var(--white);
   --light-fg: var(--black);
-  --light-fg1: var(--electric);
-  --light-fg2: var(--blue-violet);
-  --light-fg3: var(--tangerine);
+  --light-fg2: var(--grey2);
 
   /* default to dark theme */
+  --ac: var(--dark-ac);
+  --ac2: var(--dark-ac2);
+  --ac3: var(--dark-ac3);
   --bg: var(--dark-bg);
   --fg: var(--dark-fg);
-  --fg1: var(--dark-fg1);
   --fg2: var(--dark-fg2);
-  --fg3: var(--dark-fg3);
 }
 
 :root[data-color-scheme="dark"] {
+  --ac: var(--dark-ac);
+  --ac2: var(--dark-ac2);
+  --ac3: var(--dark-ac3);
   --bg: var(--dark-bg);
   --fg: var(--dark-fg);
-  --fg1: var(--dark-fg1);
   --fg2: var(--dark-fg2);
-  --fg3: var(--dark-fg3);
 }
 
 :root[data-color-scheme="light"] {
+  --ac: var(--light-ac);
+  --ac2: var(--light-ac2);
+  --ac3: var(--light-ac3);
   --bg: var(--light-bg);
   --fg: var(--light-fg);
-  --fg1: var(--light-fg1);
   --fg2: var(--light-fg2);
-  --fg3: var(--light-fg3);
 }
 
 * {
@@ -55,12 +62,11 @@
 
 html {
   display: flex;
-  background-color: var(--fg1);
+  background-color: var(--ac3);
   height: 100%;
 }
 
 body {
-  background-color: var(--bg);
   /*min-height: 100%;*/
   width: 100%;
 }
@@ -73,6 +79,11 @@ body {
   padding: 0;
 }
 
+body,
+#__next {
+  background-color: var(--bg);
+}
+
 #__next {
   display: flex;
   flex-direction: column;
@@ -81,50 +92,46 @@ body {
   min-height: 100%;
 }
 
-#__next > main {
+#__next > .container {
   flex: 1 0 auto;
 }
 
-
-a {
-  /* TODO: do something for `:hover` anchors */
-  color: var(--fg1);
+footer {
+  border-top: 1px solid var(--fg2);
 }
 
 a:visited {
-  color: var(--fg2);
+  color: var(--ac2);
 }
 
 a:active {
-  color: var(--fg3);
+  color: var(--ac2);
 }
+
+a {
+  color: var(--ac);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root:not([data-color-scheme]) {
+    --ac: var(--light-ac);
+    --ac2: var(--light-ac2);
+    --ac3: var(--light-ac3);
     --bg: var(--light-bg);
     --fg: var(--light-fg);
-    --fg1: var(--light-fg1);
     --fg2: var(--light-fg2);
-    --fg3: var(--light-fg3);
   }
 }
-/* is the dark pref needed? */
-/* if the default is light -- the media selector needs to 
- * be the opposite of the default
- */
-  /*
-   * user os set to dark.
-   * attribute is set to empty / invalid value
-   * ...
-   * not sure yet.
-   */
 
 .content {
   margin-left: auto;
   margin-right: auto;
   max-width: 80ch;
-}
-
-footer {
-  border-top: 1px solid #ddd;
+  padding: 0 8px;
 }
