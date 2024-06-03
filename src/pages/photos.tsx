@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { getSortedPhotosData } from '../lib/photos';
+import { Photo, getSortedPhotosData } from '../lib/photos';
 import Layout from '../components/layout';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,26 +13,24 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 }
 
-export default function Photos({ allPhotosData }: { allPhotosData: { id: string, filename: string, description: string, height: number, width: number }[]}) {
+export default function Photos({ allPhotosData }: { allPhotosData: Photo[] }) {
   let pageName = "photos";
-  const thumbnails = [];
-  //const sizeToThumbnail = (v) => {
-  //  const thumbnail
+  let thumbnailSize = 500;
 
   return (
     <Layout pageName={pageName}>
       <div>
-        <p>some photos I've taken</p>
+        <p>some snapshots from my perspective</p>
         <section>
           <ul>
-            {allPhotosData.map(({ id, filename, desc, width, height }: any) => (
-              <li key={id}>
-                <Link href={`/photos/${id}`}>
+            {allPhotosData.map((photo: Photo) => (
+              <li key={photo.id}>
+                <Link href={`/photos/${photo.id}`}>
                   <Image
-                    src={ `/images/${filename}` }
-                    alt={ desc }
-                    width={ width }
-                    height={ height }
+                    src={`/images/${photo.filename}`}
+                    alt={photo.desc}
+                    width={(photo.aspectRatio > 1) ? thumbnailSize * photo.aspectRatio : thumbnailSize}
+                    height={(photo.aspectRatio < 1) ? thumbnailSize / photo.aspectRatio : thumbnailSize}
                   />
                 </Link>
               </li>

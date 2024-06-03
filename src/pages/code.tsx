@@ -21,7 +21,7 @@ export default function Code({ repos }: { repos: { name: string, desc: string, u
     <Layout pageName={pageName}>
       <div>
         {repos.map(({ name, desc, url, createdAt, updatedAt }) => (
-          <div className="repocard">
+          <div key={name} className="repocard">
             <a href={url} target="_blank" rel="noopener noreferrer" className="repolink"></a>
             <h2>
               <a 

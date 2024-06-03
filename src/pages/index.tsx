@@ -26,8 +26,7 @@ export default function Home({allPostsData}: any) {
         <title>{siteTitle}</title>
       </Head>
       <section className="">
-        <p>welcome to my website. I post random things here. enjoy</p>
-        <h2 className="">Recent</h2>
+        <h2 className="">recent</h2>
         <ul className="">
           {allPostsData.map(({ id, Title, CreatedAt }: any) => (
             <li className="" key={id}>

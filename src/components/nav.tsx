@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import MainMenu from './main-menu';
+import MainMenu from './menus/main-menu';
 
 export default function Nav(props: { isHidden: boolean }) {
   console.log("rendering <Nav>");

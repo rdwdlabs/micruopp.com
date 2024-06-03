@@ -16,6 +16,7 @@ export default function Header({ className }: { className: string }) {
       <div className="content">
         <Nav isHidden={isNavHidden}></Nav>
         <div className={className}>
+          {/* TODO: breadcrumbs to replace 'logo' */}
           <div className="logo">
             <Link href="/">
               <span className="firstname">mic</span>

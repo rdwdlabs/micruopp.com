@@ -1,11 +1,9 @@
-
 export function toggleColorScheme() {
-  console.log("toggling scheme...");
   const root = document.documentElement;
   
-  const curScheme = root.dataset.colorScheme || null;
+  const usrScheme = root.dataset.colorScheme || null;
   const sysScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  const current = curScheme || sysScheme;
+  const current = usrScheme || sysScheme;
 
   root.dataset.colorScheme = current === 'dark' ? 'light' : 'dark';
 }

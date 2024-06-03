@@ -1,3 +1,4 @@
+
 export async function getPublicRepoData() {
   const root = "https://api.github.com/";
   const endpt = "users/micruopp/repos";
@@ -11,6 +12,7 @@ export async function getPublicRepoData() {
   let numRepos = 0;
 
   // it's easier to skip an element with a basic for loop than .map
+  // is it though?
   for (let i = 0; i < json.length; i++) {
     let repo = json[i];
     // skip the profile README
@@ -131,6 +133,4 @@ export async function getPublicRepoData() {
     watchers: 0,
     default_branch: 'main'
   }
-
  */
-

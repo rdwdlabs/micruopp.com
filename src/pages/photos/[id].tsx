@@ -4,13 +4,13 @@ import Layout from '../../components/layout';
 import Date from '../../components/date';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllPhotoIds, getPhotoData } from '../../lib/photos';
+import { Photo, getAllPhotoIds, getPhotoData } from '../../lib/photos';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const photoData = await getPhotoData(params?.id as string);
+  const photo = await getPhotoData(params?.id as string);
   return {
     props: {
-      photoData,
+      photo,
     },
   };
 }
@@ -23,25 +23,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 }
 
-export default function Photo({ photoData }: { photoData: { filename: string, description: string, height: number, width: number }}) {
-  const photo = {
-    url: `/images/${photoData.filename}`,
-    name: photoData.filename.split('.')[0],
-    desc: photoData.description,
-    width: photoData.width,
-    height: photoData.height
-  };
-  let pageName = photo.name;
+export default function Photo({ photo }: { photo: Photo }) {
+  let pageName = photo.id;
+  let imageSize = 800;
 
   return (
     <Layout pageName={pageName}>
       <article>
         <div>
           <Image 
-            src={ photo.url }
-            alt={  photo.desc }
-            width={ photo.width }
-            height={ photo.height }
+            src={`/images/${photo.filename}`}
+            alt={photo.desc}
+            width={(photo.aspectRatio > 1) ? imageSize * photo.aspectRatio : imageSize}
+            height={(photo.aspectRatio < 1) ? imageSize / photo.aspectRatio : imageSize}
           />
         </div>
         <p>{ photo.desc }</p>

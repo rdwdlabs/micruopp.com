@@ -65,12 +65,11 @@ export default function Layout({ children, pageName }: { children: React.ReactNo
         <meta name="description" content={metaDesc} />
       </Head>
       <Header className="" />
-      <main>
+      <div className="container">
         <div className="content">
-          <h1>{pageName}</h1>
           {children}
         </div>
-      </main>
+      </div>
       <Footer/>
     </>
   );
