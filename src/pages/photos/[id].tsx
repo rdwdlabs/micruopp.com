@@ -33,12 +33,12 @@ export default function Photo({ photo }: { photo: Photo }) {
         <div>
           <Image 
             src={`/images/${photo.filename}`}
-            alt={photo.desc}
+            alt={photo.description}
             width={(photo.aspectRatio > 1) ? imageSize * photo.aspectRatio : imageSize}
             height={(photo.aspectRatio < 1) ? imageSize / photo.aspectRatio : imageSize}
           />
         </div>
-        <p>{ photo.desc }</p>
+        <p>{photo.description}</p>
       </article>
     </Layout>
   )

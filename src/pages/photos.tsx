@@ -28,7 +28,7 @@ export default function Photos({ allPhotosData }: { allPhotosData: Photo[] }) {
                 <Link href={`/photos/${photo.id}`}>
                   <Image
                     src={`/images/${photo.filename}`}
-                    alt={photo.desc}
+                    alt={photo.description}
                     width={(photo.aspectRatio > 1) ? thumbnailSize * photo.aspectRatio : thumbnailSize}
                     height={(photo.aspectRatio < 1) ? thumbnailSize / photo.aspectRatio : thumbnailSize}
                   />

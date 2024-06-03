@@ -26,13 +26,19 @@ export function getSortedPhotosData(): Photo[] {
     const matterResult = matter(fileContents);
     const imageMetadata = matterResult.data;
 
-    const aspectRatio = imageMetadata.width / imageMetadata.height;
+    const width = imageMetadata.width;
+    const height = imageMetadata.height;
+    const aspectRatio = width / height;
+
+    const description = imageMetadata.description;
   
     return {
       id,
       filename,
-      ...matterResult.data,
-      aspectRatio
+      aspectRatio,
+      width,
+      height,
+      description
     };
   });
 
@@ -51,7 +57,7 @@ export function getAllPhotoIds() {
   });
 }
 
-export async function getPhotoData(id: string): Photo {
+export async function getPhotoData(id: string): Promise<Photo> {
   const filename = `${id}.md`;
   const fullPath = path.join(photosDirectory, filename);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -59,19 +65,18 @@ export async function getPhotoData(id: string): Photo {
   const matterResult = matter(fileContents);
   const imageMetadata = matterResult.data;
 
-  const aspectRatio = imageMetadata.width / imageMetadata.height;
-  console.log(`${id} => ${aspectRatio}`);
-  
-  // const processedContent = await remark()
-  //   .use(html)
-  //   .process(matterResult.content);
-  // const content = processedContent.toString();
+  const width = imageMetadata.width;
+  const height = imageMetadata.height;
+  const aspectRatio = width / height;
+
+  const description = imageMetadata.description;
   
   return {
     id,
     filename,
-    // content,
-    ...imageMetadata,
-    aspectRatio
+    aspectRatio,
+    width,
+    height,
+    description
   };
 }
