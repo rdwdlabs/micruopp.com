@@ -1,34 +1,49 @@
-
 export async function getPublicRepoData() {
   const root = "https://api.github.com/";
   const endpt = "users/micruopp/repos";
   const url  = root + endpt;
 
-  console.log(`${Date.now()} [fetch] ${url}`);
   const res = await fetch(url);
   const json = await res.json();
 
   let data = [];
   let numRepos = 0;
 
-  // it's easier to skip an element with a basic for loop than .map
-  // is it though?
   for (let i = 0; i < json.length; i++) {
     let repo = json[i];
+    
     // skip the profile README
     if (repo.name === 'micruopp') continue;
+
+    // Get the top languages used
+    const languageDataRes = await fetch(repo.languages_url);
+    const languageData = await languageDataRes.json();
+    const languages = Object.keys(languageData);
+
     data[numRepos] = {
       name: repo.name,
       desc: repo.description || "",
       url: repo.html_url,
       createdAt: repo.created_at,
       updatedAt: repo.updated_at,
-      langEndpt: repo.languages_url,
+      languages: languages,
     };
+
     numRepos++;
   }
 
   return data;
+}
+
+export async function getSortedRepoData() {
+  let allRepoData = await getPublicRepoData();
+  return allRepoData.sort((a, b) => {
+    if (a && b && a.updatedAt > b.updatedAt) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
 }
 
 /**

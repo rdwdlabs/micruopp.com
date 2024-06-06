@@ -4,39 +4,60 @@ import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import Date from '../components/date';
 import { getSortedPostsData } from '../lib/posts';
-
-interface Post {
-
-}
+import { getSortedPhotosData } from '../lib/photos';
+import { getSortedRepoData } from '../lib/github';
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
+  const allPhotosData = getSortedPhotosData();
+  //const allRepoData = getSortedRepoData();
+
+  const allData: any = [];
+  allPostsData.map((post) => {
+    if (post) {
+      allData.push({ "name": post.title, "date": post.createdAt, "url": `/posts/${post.id}` });
+    }
+  });
+  allPhotosData.map((photo) => {
+    if (photo) {
+      allData.push({ "name": photo.id, "date": photo.date_taken, "url": `/photos/${photo.id}` });
+    }
+  });
+  /*
+  allRepoData.map((repo) => {
+    allData.push({ "name": , "date": , "url": });
+  });
+  */
+
+  allData.sort((a: any, b: any) => {
+    if (a && b && a.date > b.date) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
   return {
     props: {
-      allPostsData,
+      allData,
     },
   };
 }
 
-export default function Home({allPostsData}: any) {
-  console.log(allPostsData);
+export default function Home({allData}: any) {
+  const pageName = "index";
   return (
-    <Layout>
+    <Layout pageName={pageName}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className="">
-        <h2 className="">recent</h2>
-        <ul className="">
-          {allPostsData.map(({ id, Title, CreatedAt }: any) => (
-            <li className="" key={id}>
-              <Link href={`/posts/${id}`}>
-                {Title}
+      <section>
+        <ul>
+          {allData.map(({ name, date, url }: any) => (
+            <li key={name}>
+              <Link href={url}>
+                {name}
               </Link>
-              <br />
-              <small className="">
-                <Date dateString={CreatedAt} />
-              </small>
             </li>
           ))}
         </ul>

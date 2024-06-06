@@ -1,28 +1,28 @@
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import Layout from '../components/layout';
+import Avatar from '../components/avatar';
+import { Photo, getPhotoData } from '../lib/photos';
 
-export default function About() {
+export const getStaticProps: GetStaticProps = async () => {
+  const profilePhoto = getPhotoData('me');
+  return {
+    props: {
+      profilePhoto,
+    },
+  };
+}
+
+
+export default function About({ profilePhoto }: { profilePhoto: Photo }) {
   let pageName = "about";
   return (
-    <Layout
-      pageName={pageName}
-    >
+    <Layout pageName={pageName}>
       <div>
-        <section>
-          <h1>{pageName}</h1>
-          <div>
-            <Image 
-              src="/images/profile.jpg"
-              width={250}
-              height={250}
-              alt="Atop Pikes Peak"
-            />
-          </div>
-          <p>Hey there, I'm Mic Ruopp.</p>
-          <p>This is my website for posting random things.</p>
-          <p>Feel free to <a href="/contact">reach out</a> if you're interested in collaborating.</p>
-        </section>
+        <p>Hello there, I'm Mic Ruopp.</p>
+        <p>This is my website for posting random things.</p>
+        <p>Feel free to <a href="mailto:micruopp@gmail.com?subject=Reaching%20out%20from%20micruopp.com">reach out</a> if you're interested in collaborating.</p>
+        <Avatar profilePhoto={profilePhoto}></Avatar>
       </div>
     </Layout>
   );

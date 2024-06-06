@@ -29,7 +29,7 @@ function handleKeypress(e: any) {
 }
 */
 
-export default function Layout({ children, pageName }: { children: React.ReactNode, pageName?: string }) {
+export default function Layout({ children, pageName, pageId }: { children: React.ReactNode, pageName?: string, pageId?: string }) {
   useEffect(() => {
     /*
     // const systemScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light');
@@ -57,6 +57,8 @@ export default function Layout({ children, pageName }: { children: React.ReactNo
   let metaTitle = `${pageName} | ${siteName}`;
   let metaDesc = `a meaningful, search-engine optimized description describing how incredible of a person I am.`;
 
+  let id = pageId || pageName || "page";
+
   return (
     <>
       <Head>
@@ -65,11 +67,12 @@ export default function Layout({ children, pageName }: { children: React.ReactNo
         <meta name="description" content={metaDesc} />
       </Head>
       <Header className="" />
-      <div className="container">
+      <main className={`${id} container`}>
         <div className="content">
+          <h1>{pageName}</h1>
           {children}
         </div>
-      </div>
+      </main>
       <Footer/>
     </>
   );

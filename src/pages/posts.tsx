@@ -19,24 +19,20 @@ export default function Posts({ allPostsData }: any) {
   let metaTitle = `${pageTitle} | ${siteTitle}`;
 
   return (
-    <Layout>
+    <Layout pageName={pageTitle}>
       <Head>
         <title>{metaTitle}</title>
       </Head>
-      <div className="breadcrumbs">
-        <p>index {'>'} <Link href="/posts">{pageTitle}</Link></p>
-      </div>
-      <h1>{pageTitle}</h1>
       <section>
         <ul>
-          {allPostsData.map(({ id, Title, CreatedAt }: any) => (
+          {allPostsData.map(({ id, title, createdAt }: any) => (
             <li className="" key={id}>
               <Link href={`/posts/${id}`}>
-                {Title}
+                {title}
               </Link>
               <br />
               <small className="">
-                <Date dateString={CreatedAt} />
+                <Date dateString={createdAt} />
               </small>
             </li>
           ))}

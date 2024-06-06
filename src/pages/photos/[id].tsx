@@ -28,7 +28,7 @@ export default function Photo({ photo }: { photo: Photo }) {
   let imageSize = 800;
 
   return (
-    <Layout pageName={pageName}>
+    <Layout pageName={pageName} pageId={`photo-${pageName}`}>
       <article>
         <div>
           <Image 
@@ -38,7 +38,8 @@ export default function Photo({ photo }: { photo: Photo }) {
             height={(photo.aspectRatio < 1) ? imageSize / photo.aspectRatio : imageSize}
           />
         </div>
-        <p>{photo.description}</p>
+        <p className="description">{photo.description}</p>
+        <p className="date">snapped <Date dateString={photo.date_taken} /></p>
       </article>
     </Layout>
   )

@@ -21,22 +21,24 @@ export default function Photos({ allPhotosData }: { allPhotosData: Photo[] }) {
     <Layout pageName={pageName}>
       <div>
         <p>some snapshots from my perspective</p>
-        <section>
+        <div>
           <ul>
             {allPhotosData.map((photo: Photo) => (
               <li key={photo.id}>
-                <Link href={`/photos/${photo.id}`}>
-                  <Image
-                    src={`/images/${photo.filename}`}
-                    alt={photo.description}
-                    width={(photo.aspectRatio > 1) ? thumbnailSize * photo.aspectRatio : thumbnailSize}
-                    height={(photo.aspectRatio < 1) ? thumbnailSize / photo.aspectRatio : thumbnailSize}
-                  />
-                </Link>
+                <div>
+                  <Link href={`/photos/${photo.id}`}>
+                    <Image
+                      src={`/images/${photo.filename}`}
+                      alt={photo.description}
+                      width={(photo.aspectRatio > 1) ? thumbnailSize * photo.aspectRatio : thumbnailSize}
+                      height={(photo.aspectRatio < 1) ? thumbnailSize / photo.aspectRatio : thumbnailSize}
+                    />
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>
-        </section>
+        </div>
       </div>
     </Layout>
   );

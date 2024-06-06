@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import MainMenu from './menus/main-menu';
 import ContactMenu from './menus/contact-menu';
+import Legal from './legal';
 
 export default function Footer() {
     return (
@@ -13,6 +14,9 @@ export default function Footer() {
           <div>
             <h3 className="menu-heading">reach me</h3>
             <ContactMenu></ContactMenu>
+          </div>
+          <div className="legal">
+            <Legal></Legal>
           </div>
         </div>
       </footer>

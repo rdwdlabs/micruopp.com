@@ -4,6 +4,10 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
+export interface Post {
+
+}
+
 const postsDirectory = path.join(process.cwd(), 'src/data/posts');
 
 export function getSortedPostsData() {
@@ -15,16 +19,17 @@ export function getSortedPostsData() {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
   
     const matterResult = matter(fileContents);
-    console.log(matterResult.data);
     
     let article = undefined;
     const isPublished = matterResult.data['Published'];
-    const date = matterResult.data['CreatedAt'];
+    const createdAt = matterResult.data['CreatedAt'];
+    const title = matterResult.data['Title'];
+
     if (isPublished) {
       article = {
         id,
-        date,
-        ...matterResult.data,
+        createdAt,
+        title,
       };
     }    
 
@@ -35,7 +40,7 @@ export function getSortedPostsData() {
   );
 
   return allPostsData.sort((a, b) => {
-    if (a && b && a.date > b.date) {
+    if (a && b && a.createdAt > b.createdAt) {
       return 1;
     } else {
       return -1;

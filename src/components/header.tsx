@@ -13,18 +13,16 @@ export default function Header({ className }: { className: string }) {
 
   return (
     <header>
+      <Nav isHidden={isNavHidden}></Nav>
       <div className="content">
-        <Nav isHidden={isNavHidden}></Nav>
-        <div className={className}>
-          {/* TODO: breadcrumbs to replace 'logo' */}
-          <div className="logo">
-            <Link href="/">
-              <span className="firstname">mic</span>
-              <span className="lastname">ruopp</span>
-            </Link>
-          </div>
-          <button onClick={toggleNav}>...</button>
+        {/* TODO: breadcrumbs to replace 'logo' */}
+        <div className="logo">
+          <Link href="/">
+            <span className="firstname">mic</span>
+            <span className="lastname">ruopp</span>
+          </Link>
         </div>
+        <button onClick={toggleNav}>...</button>
       </div>
     </header>
   );

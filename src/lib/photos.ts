@@ -7,6 +7,7 @@ import html from 'remark-html';
 export interface Photo {
   id: string;
   filename: string;
+  date_taken: string;
   description: string;
   width: number;
   height: number;
@@ -16,11 +17,11 @@ export interface Photo {
 const photosDirectory = path.join(process.cwd(), 'src/data/photos');
 
 export function getSortedPhotosData(): Photo[] {
-  const fileNames = fs.readdirSync(photosDirectory);
-  const allPhotosData = fileNames.map((filename) => {
-    const id = filename.replace(/\.md$/, '');
+  const imageMetadataFilenames = fs.readdirSync(photosDirectory);
+  const allPhotosData = imageMetadataFilenames.map((imageMetadataFilename) => {
+    const id = imageMetadataFilename.replace(/\.md$/, '');
   
-    const fullPath = path.join(photosDirectory, filename);
+    const fullPath = path.join(photosDirectory, imageMetadataFilename);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
   
     const matterResult = matter(fileContents);
@@ -30,11 +31,14 @@ export function getSortedPhotosData(): Photo[] {
     const height = imageMetadata.height;
     const aspectRatio = width / height;
 
+    const filename = imageMetadata.filename;
+    const date_taken = imageMetadata.date_taken;
     const description = imageMetadata.description;
   
     return {
       id,
       filename,
+      date_taken,
       aspectRatio,
       width,
       height,
@@ -42,7 +46,13 @@ export function getSortedPhotosData(): Photo[] {
     };
   });
 
-  return allPhotosData;
+  return allPhotosData.sort((a, b) => {
+    if (a && b && a.date_taken > b.date_taken) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
 }
 
 export function getAllPhotoIds() {
@@ -57,9 +67,9 @@ export function getAllPhotoIds() {
   });
 }
 
-export async function getPhotoData(id: string): Promise<Photo> {
-  const filename = `${id}.md`;
-  const fullPath = path.join(photosDirectory, filename);
+export function getPhotoData(id: string): Photo {
+  const imageMetadataFilename = `${id}.md`;
+  const fullPath = path.join(photosDirectory, imageMetadataFilename);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   
   const matterResult = matter(fileContents);
@@ -69,11 +79,14 @@ export async function getPhotoData(id: string): Promise<Photo> {
   const height = imageMetadata.height;
   const aspectRatio = width / height;
 
+  const filename = imageMetadata.filename;
+  const date_taken = imageMetadata.date_taken;
   const description = imageMetadata.description;
   
   return {
     id,
     filename,
+    date_taken,
     aspectRatio,
     width,
     height,
