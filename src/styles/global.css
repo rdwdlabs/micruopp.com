@@ -37,6 +37,13 @@
   --bg: var(--dark-bg);
   --fg: var(--dark-fg);
   --fg2: var(--dark-fg2);
+
+  /* system font stacks
+   * https://systemfontstack.com
+   */
+  --sys-sans: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'segoe ui', 'helvetica neue', helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  --sys-serif: 'Iowan Old Style', 'Apple Garamond', Baskerville, 'Times New Roman', 'Droid Serif', Times, 'Source Serif Pro', serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --sys-mono: Menlo, Consolas, Monaco, 'Liberation Mono', 'Lucida Console', monospace;
 }
 
 :root[data-color-scheme="dark"] {
@@ -64,6 +71,8 @@
 html {
   display: flex;
   background-color: var(--ac3);
+  font-family: var(--sys-sans);
+  font-size: 100%;
   height: 100%;
 }
 
