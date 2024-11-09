@@ -16,17 +16,17 @@ To run this website locally,
 git clone https://github.com/micruopp/micruopp.com
 ```
 
-1. Install the dependencies.
+2. Install the dependencies.
 ```
 npm install
 ```
 
-1. Enter the directory.
+3. Enter the directory.
 ```
 cd micruopp.com
 ```
 
-1. Start the dev server,
+4. Start the dev server,
 ```
 npm run dev
 ```
