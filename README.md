@@ -11,22 +11,24 @@ Ensure your system has the following:
 
 To run this website locally,
 
-1. Clone the repository.
+### 1. Clone the repository
 ```
 git clone https://github.com/micruopp/micruopp.com
 ```
 
-2. Install the dependencies.
+### 2. Install the dependencies
 ```
 npm install
 ```
 
-3. Enter the directory.
+### 3. Enter the directory
 ```
 cd micruopp.com
 ```
 
-4. Start the dev server,
+### 4. Start the server
+
+Start the dev server,
 ```
 npm run dev
 ```
